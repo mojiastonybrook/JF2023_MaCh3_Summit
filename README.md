@@ -58,8 +58,23 @@ root -l ReweightPrior.C'("/gpfs/alpine/proj-shared/phy171/Asimov_fit_chains/MaCh
 ```
 It would add a branch named as *RCreweight* in a copied file of the input, which holds the weights calculated in the normal mode to constrain the parameter of sin_theta_13.
 
-## Making contour plots with the reduced chain
+## Making plots with the reduced chain
+### Trace plots of Log Likelihood
 
+### Contours of oscillation parameters
+The plotting scripts are hacked from MaCh3's `AtmJointFit_Utils`. It takes the summary chain as input file with arguments such as the burn-in cut, reweighting boolean, draw style and drawing boolean. An example to make 1D plots without reactor constraints is here:
+```
+root -l MakeContours1D.C'("MaCh3_MCMC_chain_0_reduced.root",75000,false,0,true)'
+```
+
+To make plots with reactor constraints, the input file should be the reweighted file with *RCreweight* branch and the reweighting boolean as true. 
+
+### note
+Drawing with reactor constraints might hit segement crash issue during execution. It is related with the branch status of the reweighted chain file. To fix this isssue add the following codes after the declaration of variable `Tree`
+```
+TTree *Tree = (TTree*)File->Get(TreeName);
+```
+in the drawing scripts whenever using the rewighted file as input.
 
 
 
