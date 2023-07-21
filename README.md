@@ -59,6 +59,8 @@ root -l ReweightPrior.C'("/gpfs/alpine/proj-shared/phy171/Asimov_fit_chains/MaCh
 It would add a branch named as *RCreweight* in a copied file of the input, which holds the weights calculated in the normal mode to constrain the parameter of sin_theta_13.
 
 ## Making plots with the reduced chain
+The plotting scripts are stored in `oscillation_plot` directory.
+
 ### Trace plots of Log Likelihood
 
 ### Contours of oscillation parameters
