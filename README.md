@@ -38,17 +38,25 @@ The merged chains contain from the start to the stop all the sampled values of t
 `reduce_chains.sh` calls the above shell script to parallelize the reduction process for higher efficiency.
 
 ### Merge the reduced chains
-The reduced chains could be merged togeher into a single file for the convenience of analysis.
+The reduced chains could be merged togeher into a single file for the convenience of analysis, which serves as the summary of all the chains with their sampled parameter values saved as individual entries for each step. 
 
 In `merge_chain` run
 ```
 python merge_reduced_chains.py
 ```
 ## Reweighting with reactor constraints
+The production of the chains are ususally done without the reactor neutrino experiments' constraints on the values of sin_theta_13. Instead, the results are reweighted according to the given value from external experiments since either T2K nor SK data have such sensitity to the parameter of sin_theta_13.
+
 The reweighting script is hacked from the develop branch of MaCh3.
 The values of the constraints should be checked and changed according to the purpose of study.
 
-For example, the values used by OA2020 is listed here: 
+For example, the values used by OA2020 is listed here: `https://www.t2k.org/asg/oagroup/inputs/FY19-oa-inputs/FY19-oa-inputs-list`, with the nominal truth of sin_theta_13 set as 0.0218.
+
+An example as how to run the marco over the summary chain is here:
+```
+root -l ReweightPrior.C'("/gpfs/alpine/proj-shared/phy171/Asimov_fit_chains/MaCh3_MCMC_reduced.root",0)'
+```
+It would add a branch named as *RCreweight* in a copied file of the input, which holds the weights calculated in the normal mode to constrain the parameter of sin_theta_13.
 
 ## Making contour plots with the reduced chain
 
