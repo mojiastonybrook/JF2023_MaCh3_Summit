@@ -59,9 +59,10 @@ root -l ReweightPrior.C'("/gpfs/alpine/proj-shared/phy171/Asimov_fit_chains/MaCh
 It would add a branch named as *RCreweight* in a copied file of the input, which holds the weights calculated in the normal mode to constrain the parameter of sin_theta_13.
 
 ## Making plots with the reduced chain
-The plotting scripts are stored in `oscillation_plot` directory.
+The plotting scripts are stored in `oscillation_plots` directory.
 
 ### Trace plots of Log Likelihood
+Run `root -l plot_trace_LogLs.cpp'(id_start,id_stop)'` to have the overlaid traces of the chains' log likelihoods versus step. 
 
 ### Contours of oscillation parameters
 The plotting scripts are hacked from MaCh3's `AtmJointFit_Utils`. It takes the summary chain as input file with arguments such as the burn-in cut, reweighting boolean, draw style and drawing boolean. An example to make 1D plots without reactor constraints is here:
